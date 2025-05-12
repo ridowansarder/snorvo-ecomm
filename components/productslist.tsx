@@ -8,7 +8,7 @@ interface ProductsListProps {
   products: Stripe.Product[];
 }
 
-function productslist({ products }: ProductsListProps) {
+function ProductsList({ products }: ProductsListProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const filteredProducts = products.filter((product) => {
@@ -62,4 +62,4 @@ function productslist({ products }: ProductsListProps) {
   );
 }
 
-export default productslist;
+export default ProductsList;

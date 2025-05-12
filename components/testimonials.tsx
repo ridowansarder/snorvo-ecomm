@@ -45,7 +45,7 @@ export default function Testimonials() {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow hover:shadow-lg transition"
             >
-              <p className="text-gray-700 dark:text-gray-300 italic">"{t.quote}"</p>
+              <p className="text-gray-700 dark:text-gray-300 italic">{t.quote}</p>
               <div className="mt-4 flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-full ${t.color} dark:bg-gray-700`} />
                 <div>
