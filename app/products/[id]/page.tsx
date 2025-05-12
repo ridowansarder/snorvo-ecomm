@@ -1,16 +1,16 @@
 import ProductDetails from "@/components/productDetails";
 import { stripe } from "@/lib/stripe";
 
-interface ProductPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await stripe.products.retrieve(params.id, {
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const product = await stripe.products.retrieve(id, {
     expand: ["default_price"],
   });
 
-  return <ProductDetails product={product} />;
+  const plainProduct = JSON.parse(JSON.stringify(product));
+  return <ProductDetails product={plainProduct} />;
 }
