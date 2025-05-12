@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
   {
-    quote: "Fast shipping and the product quality is unmatched. I’ll never shop anywhere else!",
+    quote: "Fast shipping and the product quality is unmatched. I'll never shop anywhere else!",
     name: "Shamim H.",
     location: "Mogbazar, Dhaka",
     color: "bg-blue-100",

@@ -8,7 +8,7 @@ export default function About() {
           About Us
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-10">
-          We’re a passionate team dedicated to delivering the best online shopping experience.
+          We're a passionate team dedicated to delivering the best online shopping experience.
           From high-quality products to exceptional customer support, everything we do is designed
           to make your life easier and better. Our mission is to combine innovation, trust, and
           creativity to build a brand that you love.
