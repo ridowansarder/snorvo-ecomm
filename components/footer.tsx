@@ -2,8 +2,8 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 px-6 py-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="px-6 py-10">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Brand & About */}
         <div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
@@ -83,32 +83,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-      </div>
-
-      <div className="flex justify-between items-center border-t border-gray-300 dark:border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} Snorvo. All rights reserved.
-        <div className="text-left">
-          <h3 className="font-semibold text-gray-800 dark:text-white mb-3">
-            Subscribe
-          </h3>
-          <p className="text-sm mb-4">
-            Get updates on deals, new products, and more.
-          </p>
-          <form className="flex flex-col sm:flex-row items-center gap-3">
-            <input
-              type="email"
-              placeholder="Email address"
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-        <div>
+        <div className="flex flex-col items-center justify-center">
           <h4 className="font-medium mb-4"> Connect With Us</h4>
           <div className="flex space-x-4 justify-center">
             <a
@@ -125,6 +100,10 @@ export default function Footer() {
             </a>
           </div>
         </div>
+      </div>
+
+      <div className="border-t border-gray-300 dark:border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        © {new Date().getFullYear()} Snorvo. All rights reserved.
       </div>
     </footer>
   );

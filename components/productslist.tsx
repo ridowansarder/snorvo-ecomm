@@ -35,8 +35,9 @@ function ProductsList({ products }: ProductsListProps) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.map((product) => (
+          <Link key={product.id} href={`/products/${product.id}`}>
             <ul
-              key={product.id}
+              
               className="p-4 border rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform duration-300 ease-in-out"
             >
               <img
@@ -45,7 +46,7 @@ function ProductsList({ products }: ProductsListProps) {
                 className="w-full h-auto rounded-lg"
               />
               <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-              <p className="text-gray-600 my-3">
+              <p className="text-gray-600 dark:text-gray-300 my-3">
                 {product.default_price &&
                 typeof product.default_price === "object" &&
                 product.default_price.unit_amount
@@ -53,9 +54,10 @@ function ProductsList({ products }: ProductsListProps) {
                   : "Price not available"}
               </p>
               <Button className="transition duration-300 ease-in-out hover:scale-105 mb-2 w-full">
-                <Link href={`/products/${product.id}`}>View Product</Link>
+                View Product
               </Button>
             </ul>
+            </Link>
         ))}
       </div>
     </div>

@@ -10,7 +10,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
   const price = product.default_price as Stripe.Price;
 
   return (
-    <div className="mx-auto px-4 py-12 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div className="mx-auto min-h-[90vh] px-4 py-12 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
       {/* Image Section */}
       <div className="flex justify-center">
         {product.images && product.images.length > 0 && (
@@ -26,13 +26,13 @@ function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Text Section */}
       <div className="max-w-xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">
+        <h1 className="text-4xl font-bold text-foreground mb-6">
           {product.name}
         </h1>
-        <p className="text-gray-700 text-lg leading-relaxed mb-6">
+        <p className="text-foreground/80 text-lg leading-relaxed mb-6">
           {product.description || "No description available."}
         </p>
-        <p className="text-2xl font-semibold text-gray-800 mb-6">
+        <p className="text-2xl font-semibold text-foreground/80 mb-6">
           Price: $
           {price && typeof price.unit_amount === "number"
             ? (price.unit_amount / 100).toFixed(2)
@@ -41,7 +41,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
         <Button>
           Add to Cart
         </Button>
-        <Button variant="outline" className="ml-4">
+        <Button variant="outline" className="ml-4 hover:bg-black hover:text-white">
           Buy Now
         </Button>
       </div>

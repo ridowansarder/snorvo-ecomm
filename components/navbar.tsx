@@ -1,43 +1,57 @@
 "use client";
-
+import { Lightbulb, Menu, Search, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
-import { ShoppingCart, Menu, X } from "lucide-react";
-import Link from "next/link";
 import clsx from "clsx";
-import { ThemeToggle } from "./themeToggle";
-import AnimatedNavLink from "./animatedNavlink";
+import { Button } from "./ui/button";
+import { ModeToggle } from "./themeToggle";
+import { Input } from "./ui/input";
+import Link from "next/link";
 
-export default function Navbar() {
-  const [cartCount] = useState(2); // Replace with Zustand/global state
-  const [isOpen, setIsOpen] = useState(false);
+const Navlinks = [
+  {
+    id: 1,
+    url: "/products",
+    label: "Products",
+  },
+  {
+    id: 2,
+    url: "/about",
+    label: "About",
+  },
+  {
+    id: 3,
+    url: "/contact",
+    label: "Contact",
+  },
+];
+
+const Navbar = () => {
+  const [cartCount] = useState(2);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50 dark:bg-gray-900 dark:shadow-md dark:text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-2xl font-bold text-purple-600 tracking-wide "
-        >
-          Snorvo
+    <nav className="transition-all bg-background duration-200 h-16 w-full top-0 z-50 fixed py-3 shadow-md">
+      {/* desktop nav */}
+      <div className="flex items-center justify-between h-full mx-auto w-[90%] ">
+        <Link href="/" className="flex items-center justify-center space-x-2">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center">
+            <Lightbulb className="h-6 w-6" />
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold">Snorvo</h1>
         </Link>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-6 text-sm font-medium text-gray-700 dark:text-gray-200">
-          <AnimatedNavLink href="/products" label="Products" />
-          <AnimatedNavLink href="/about" label="About" />
-          <AnimatedNavLink href="/contact" label="Contact" />
+        <div className="hidden lg:flex items-center space-x-8">
+          {Navlinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.url}
+              className="text-sm md:text-base font-semibold hover:text-primary/80 transition-all duration-200 hover:underline hover:underline-offset-6"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        {/* Search + Cart + Menu Button */}
         <div className="flex items-center gap-4">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="hidden md:block w-56 rounded-md border px-3 py-1.5 dark:border-gray-200 border-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-primary-light"
-          />
-
-          {/* Cart */}
           <Link href="/cart" className="relative">
             <ShoppingCart className="h-6 w-6 text-gray-700 hover:text-primary transition-colors dark:text-gray-200" />
             {cartCount > 0 && (
@@ -46,55 +60,58 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+          <div className="hidden lg:flex relative">
+            <Search className="absolute left-3 top-2.5 h-4 w-4" />
+            <Input
+              placeholder="Search products..."
+              className="w-full pl-10"
+            />
+          </div>
+          <ModeToggle />
 
-          <ThemeToggle />
-
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 dark:text-gray-100 mx-3"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="lg:hidden p-2 text-foreground z-50"
+            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={clsx(
-          "md:hidden transition-all duration-300 overflow-hidden bg-white dark:bg-gray-800 text-gray-700 dark:text-white",
-          isOpen ? "max-h-40" : "max-h-0"
-        )}
-      >
-        <div className="px-4 py-3 space-y-4 text-sm font-medium ">
-          <Link
-            href="/products"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-primary"
-          >
-            Products
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-primary"
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-primary"
-          >
-            Contact
-          </Link>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="block w-full mt-2 rounded-md border px-3 py-1.5 text-sm focus:outline-none dark:border-gray-200 focus:ring-2 focus:ring-primary-light"
-          />
+        {/* mobile nav */}
+
+        <div
+          className={clsx(
+            "fixed inset-0 bg-background z-40 flex flex-col items-center justify-center",
+            "transition-all duration-300 md:hidden",
+            isMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          )}
+        >
+          <div className="flex flex-col space-y-8 text-xl">
+            <div className=" relative">
+              <Search className="absolute left-3 top-2.5 h-4 w-4" />
+              <Input
+                placeholder="Search products..."
+                className="w-full pl-10"
+              />
+            </div>
+            {Navlinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                className="text-foreground font-semibold transition-all duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;
