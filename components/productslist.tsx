@@ -3,6 +3,7 @@ import Link from "next/link";
 import Stripe from "stripe";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import Image from "next/image";
 
 interface ProductsListProps {
   products: Stripe.Product[];
@@ -40,9 +41,11 @@ function ProductsList({ products }: ProductsListProps) {
               
               className="p-4 border rounded-lg shadow-md flex flex-col items-center hover:scale-105 transition-transform duration-300 ease-in-out"
             >
-              <img
+              <Image
                 src={product.images[0]}
                 alt={product.name}
+                width={400}
+                height={400}
                 className="w-full h-auto rounded-lg"
               />
               <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>

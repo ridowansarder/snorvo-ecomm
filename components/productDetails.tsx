@@ -10,7 +10,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
   const price = product.default_price as Stripe.Price;
 
   return (
-    <div className="mx-auto min-h-[90vh] px-4 py-12 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
+    <div className="mx-auto min-h-[100vh] px-4 py-12 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
       {/* Image Section */}
       <div className="flex justify-center">
         {product.images && product.images.length > 0 && (

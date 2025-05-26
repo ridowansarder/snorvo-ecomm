@@ -2,7 +2,6 @@
 import { Lightbulb, Menu, Search, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
-import { Button } from "./ui/button";
 import { ModeToggle } from "./themeToggle";
 import { Input } from "./ui/input";
 import Link from "next/link";
